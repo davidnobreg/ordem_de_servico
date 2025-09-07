@@ -26,7 +26,9 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=config_host.list)
 # Application definition
 
 DEFAULT_APPS = [
-    #'jazzmin',
+    # 'jazzmin',
+
+    'rest_framework',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,11 +39,11 @@ DEFAULT_APPS = [
 ]
 
 THIRD_APPS = [
-    #'rolepermissions',
+    # 'rolepermissions',
     # 'django_crontab',
     # 'django_q',
-    #'django_celery_results',
-    #'django_celery_beat',
+    # 'django_celery_results',
+    # 'django_celery_beat',
 
 ]
 
@@ -54,6 +56,16 @@ PROJECT_APPS = [
 ]
 
 INSTALLED_APPS = PROJECT_APPS + THIRD_APPS + DEFAULT_APPS
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10, # número de itens por página
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -85,7 +97,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
@@ -109,7 +120,6 @@ else:
         }
     }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -128,7 +138,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -141,7 +150,6 @@ USE_TZ = True  # Habilita o uso de fuso horário
 USE_I18N = True
 
 USE_L10N = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
