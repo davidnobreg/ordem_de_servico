@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Listar Clientes{% endblock %}
+
+{% block content %}
+    <div class="container-fluid table-container">
+        <h1 class="text-center mb-4">Clientes da Oficina</h1>
+
+        {% if clientes %}
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Email</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for cliente in clientes %}
+                        <tr>
+                            <td>{{ cliente.nome }}</td>
+                            <td>{{ cliente.fone }}</td>
+                            <td>{{ cliente.email }}</td>
+                            <td>
+                                <button class="btn btn-detalhes" onclick="alert('Detalhes de {{ cliente.nome }}')">
+                                    Detalhes
+                                </button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="sem-clientes">Nenhum cliente cadastrado.</p>
+        {% endif %}
+    </div>
+{% endblock %}

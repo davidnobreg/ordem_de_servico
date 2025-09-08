@@ -1,9 +1,19 @@
+from django.shortcuts import render
 from rest_framework import viewsets, filters, status
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.pagination import PageNumberPagination
 from .models import Cliente
 from .serializers import ClienteSerializer
+
+# Função view
+def clientes(request):
+    clientes = Cliente.objects.all()  # Pega todos os clientes cadastrados
+    # Pode passar um contexto para o template se quiser
+    contexto = {
+        'clientes': clientes
+    }
+    return render(request, 'lista_clientes.html', contexto)
 
 # Paginação personalizada
 class ClientePagination(PageNumberPagination):

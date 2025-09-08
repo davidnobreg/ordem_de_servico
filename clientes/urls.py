@@ -1,10 +1,11 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import ClienteViewSet
+from .views import ClienteViewSet, clientes
 
 router = DefaultRouter()
-router.register(r'', ClienteViewSet)
+router.register(r'clientes', ClienteViewSet, basename='cliente')
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),        # rota para API REST
+    path('clientes/', clientes, name='clientes')  # rota para template HTML
 ]

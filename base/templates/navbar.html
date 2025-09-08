@@ -1,0 +1,18 @@
+{% load static %}
+
+<h1>Oficina Futurista</h1>
+    <nav>
+    {% if user.is_authenticated %}
+        <a href="#">Início</a>
+        <a href="#">Serviços</a>
+        <a href="#">Clientes</a>
+        <a href="#">Relatórios</a>
+    {% endif %}
+    {% if user.is_authenticated %}
+        <a href="#">Sair</a>
+    {% else %}
+        <a href="#">Entrar</a>
+    {% endif %}
+
+    </nav>
+</header>
